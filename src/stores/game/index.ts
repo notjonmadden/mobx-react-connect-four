@@ -1,7 +1,7 @@
 import { observable, action, computed } from "mobx";
-import { Player, COLUMNS, ColumnId, BOARD_HEIGHT } from "../../types";
+import { Player, COLUMNS, ColumnId, BOARD_HEIGHT, Optional } from "../../types";
 import Column from "./column";
-import { findWinner } from "./util";
+import { findWinner, diagonals } from "./util";
 import { range } from "lodash";
 
 export default class Game {
@@ -40,7 +40,7 @@ export default class Game {
     }
 
     @computed get winner() {
-        let lines = [...this.columns.map(c => c.stack), ...this.rows];
+        let lines = [...this.columns.map(c => c.stack), ...this.rows, ...this.diagonals];
 
         for (const line of lines) {
             const winner = findWinner(line);
@@ -62,7 +62,9 @@ export default class Game {
         return this.getColumn(column).getPiece(row);
     }
 
-    // TODO: get diagonals()
+    private get diagonals() {
+        return diagonals<Optional<Player>>(this.rows).filter(d => d.length >= 4);
+    }
 
     @action clear() {
         this.columns.forEach(c => c.clear());

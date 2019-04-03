@@ -1,5 +1,6 @@
 import { Optional, Player } from "../../../types";
 import { take, drop } from "lodash";
+import diagonals from './diagonals';
 
 export function findWinner(pieces: ReadonlyArray<Optional<Player>>): Optional<Player> {
     const stop = pieces.length - 3;
@@ -18,3 +19,5 @@ export function findWinner(pieces: ReadonlyArray<Optional<Player>>): Optional<Pl
 
     return null;
 }
+
+export { diagonals };
