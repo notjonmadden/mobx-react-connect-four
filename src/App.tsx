@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 import Board from './components/board';
+import { observer } from 'mobx-react';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Board />
-      </div>
-    );
-  }
-}
+const App: React.StatelessComponent = () => (
+  <div style={{ margin: '1em 37.5vw' }}>
+    <Board />
+  </div>
+);
 
-export default App;
+export default observer(App);
