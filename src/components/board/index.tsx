@@ -1,24 +1,15 @@
 import React from 'react';
-import Game from "../../stores/game";
 import WrappedBoard from './Board';
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 
 interface OuterProps {
 
 }
 
-interface InnerProps {
-    game: Game;
-}
 
-const Board: React.StatelessComponent<OuterProps> = ({ ...props }) => {
-    const { game } = props as InnerProps;
+const Board: React.StatelessComponent<OuterProps> = ({ }) => {
 
-    return <WrappedBoard 
-        currentTurn={game.activePlayer} 
-        winner={game.winner}
-        onResetClick={() => game.clear()}
-    />;
+    return <WrappedBoard />;
 };
 
-export default inject('game')(observer(Board));
+export default observer(Board);

@@ -2,19 +2,15 @@ import React from 'react';
 import { Player, ColumnId, COLUMNS, Optional } from '../../types';
 import { observer } from 'mobx-react';
 import Column from './components/column';
+import Header from './components/header';
 
 interface Props {
-    currentTurn: Player;
-    winner: Optional<Player>;
-    onResetClick: () => void;
+
 }
 
-const Board: React.StatelessComponent<Props> = ({ currentTurn, winner, onResetClick }) => (
+const Board: React.StatelessComponent<Props> = ({ }) => (
     <div>
-        {
-        winner
-        ? <h1>{winner} Wins!!!</h1>
-        : <h1>{currentTurn}'s Turn!</h1>}
+        <Header />
         <div style={{ display: 'flex', justifyContent: 'center' }}> 
             {COLUMNS.map(c => (
                 <div style={{ display: 'flex', justifyContent: 'center', padding: '0em .125em' }}>
@@ -22,7 +18,6 @@ const Board: React.StatelessComponent<Props> = ({ currentTurn, winner, onResetCl
                 </div>
             ))}
         </div>
-        <button onClick={onResetClick}>Reset</button>
     </div>
 );
 
